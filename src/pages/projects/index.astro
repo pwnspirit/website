@@ -1,0 +1,49 @@
+---
+import Base from "../../layouts/Base.astro";
+import { projects, talks, awards } from "../../data/site";
+---
+<Base title="projects" description="tools and recognition — pwnspirit.">
+  <header class="intro"><h1>projects</h1><p>things i built because i got tired of doing them by hand. nothing fancy, they just save me time.</p></header>
+
+  <section class="section" style="margin-top:34px">
+    <div class="section-head"><h2>tools</h2></div>
+    <ul class="rows">
+      {projects.map((pr) => (
+        <li>
+          <a class="row" href={pr.href}>
+            <span class="r-title">{pr.name}</span>
+            <span class="r-desc">{pr.desc}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2>talks &amp; writing</h2></div>
+    <ul class="rows">
+      {talks.map((t) => (
+        <li>
+          <a class="row" href={t.href}>
+            <span class="r-title">{t.title}</span>
+            <span class="r-meta">{t.meta}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="section" id="recognition">
+    <div class="section-head"><h2>recognition</h2></div>
+    <ul class="rows">
+      {awards.map((a) => (
+        <li>
+          <a class="row" href={a.href}>
+            <span class="r-title">{a.title}</span>
+            <span class="r-meta">{a.meta}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>

@@ -1,0 +1,20 @@
+---
+import Base from "./Base.astro";
+const { title, description, date, kind, severity } = Astro.props;
+const dt = new Date(date);
+const human = dt.toLocaleDateString("en", { year: "numeric", month: "long", day: "numeric" });
+---
+<Base title={title} description={description}>
+  <article class="prose">
+    <div class="post-head">
+      <h1>{title}</h1>
+      <div class="post-meta">
+        <time datetime={dt.toISOString()}>{human}</time>
+        {severity && <span class={`sev ${severity}`}>{severity}</span>}
+        {kind === "writeup" && !severity && <span class="sev low">writeup</span>}
+      </div>
+    </div>
+    <div class="content"><slot /></div>
+    <a class="back-link" href="/blog">← all writing</a>
+  </article>
+</Base>

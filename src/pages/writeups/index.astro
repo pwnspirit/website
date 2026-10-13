@@ -1,0 +1,27 @@
+---
+import Base from "../../layouts/Base.astro";
+import { getCollection } from "astro:content";
+const writeups = (
+  await getCollection("blog", ({ data }) => !data.draft && data.kind === "writeup")
+).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<Base title="writeups" description="bug writeups by pwnspirit.">
+  <header class="intro"><h1>writeups</h1><p>stuff i've found and reported, written up so they're actually useful to read. all of it in scope, tested on my own accounts.</p></header>
+  <section class="section" style="margin-top:34px">
+    <div class="section-head"><h2>all writeups</h2></div>
+    {writeups.length === 0 ? (
+      <p style="color:var(--f-low)"><em>nothing here yet.</p>
+    ) : (
+      <ul class="rows">
+        {writeups.map((p) => (
+          <li>
+            <a class="row" href={`/blog/${p.id}/`}>
+              <span class="r-title">{p.data.title}</span>
+              <span class="r-meta">{p.data.severity ? <span class={`sev ${p.data.severity}`}>{p.data.severity}</span> : ""}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+  </section>
+</Base>

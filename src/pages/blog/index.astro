@@ -1,0 +1,32 @@
+---
+import Base from "../../layouts/Base.astro";
+import { getCollection } from "astro:content";
+const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+const fmt = (d) => d.toLocaleDateString("en", { month: "short", year: "numeric" });
+---
+<Base title="writing" description="notes and writeups by pwnspirit.">
+  <header class="intro"><h1>writing</h1><p>notes, half-formed thoughts, and the occasional bug i'm proud of.</p></header>
+  <section class="section" style="margin-top:34px">
+    <div class="section-head"><h2>all posts</h2></div>
+    {posts.length === 0 ? (
+      <p style="color:var(--f-low)"><em>nothing here yet. drop Markdown in <code>src/content/blog/</code>.</em></p>
+    ) : (
+      <ul class="rows">
+        {posts.map((p) => (
+          <li>
+            <a class="row" href={`/blog/${p.id}/`}>
+              <span class="r-title">{p.data.title}</span>
+              <span class="r-meta">
+                {p.data.kind === "writeup" && p.data.severity
+                  ? <span class={`sev ${p.data.severity}`}>{p.data.severity}</span>
+                  : fmt(p.data.date)}
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+  </section>
+</Base>

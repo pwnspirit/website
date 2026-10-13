@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="pwnspiriit ghost mascot">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9d86ff"/>
+      <stop offset="1" stop-color="#7c5cff"/>
+    </linearGradient>
+    <radialGradient id="cheek" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#ff6ba9" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#ff6ba9" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <!-- soft shadow -->
+  <ellipse cx="100" cy="182" rx="46" ry="8" fill="#7c5cff" opacity="0.18"/>
+  <!-- body -->
+  <path fill="url(#g)" d="M100 26c-37 0-62 27-62 64v62c0 9 10 14 17 8l10-9c4-3 9-3 13 0l10 9c4 3 9 3 13 0l10-9c4-3 9-3 13 0l10 9c7 6 17 1 17-8V90c0-37-25-64-61-64Z"/>
+  <!-- inner glow -->
+  <path fill="#ffffff" opacity="0.10" d="M100 40c-28 0-47 20-47 49v10c0-29 19-49 47-49s47 20 47 49V89c0-29-19-49-47-49Z"/>
+  <!-- eyes -->
+  <ellipse cx="80" cy="92" rx="9" ry="12" fill="#1b1a27"/>
+  <ellipse cx="120" cy="92" rx="9" ry="12" fill="#1b1a27"/>
+  <circle cx="83" cy="87" r="3" fill="#fff"/>
+  <circle cx="123" cy="87" r="3" fill="#fff"/>
+  <!-- cheeks -->
+  <circle cx="68" cy="108" r="11" fill="url(#cheek)"/>
+  <circle cx="132" cy="108" r="11" fill="url(#cheek)"/>
+  <!-- terminal-cursor smile -->
+  <path d="M90 112 q10 10 20 0" stroke="#1b1a27" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <!-- little hacker visor highlight -->
+  <rect x="66" y="74" width="68" height="4" rx="2" fill="#fff" opacity="0.25"/>
+</svg>

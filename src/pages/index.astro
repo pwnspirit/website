@@ -1,0 +1,37 @@
+---
+import Base from "../layouts/Base.astro";
+const github = "https://github.com/pwnspirit";
+const ctf = "https://ctf.roshan-tiwari.com.np";
+---
+<Base>
+  <header class="intro">
+    <div class="intro-row">
+      <div class="intro-text">
+        <h1>hii, i'm <span class="name">pwnspirit</span></h1>
+        <p class="tagline">i'm an 18 year old guy from Nepal who loves computers and software.</p>
+        <p>
+          i spend most of my time breaking things to understand how they work, then
+          writing down what i find.
+        </p>
+      </div>
+
+      <figure class="figure">
+        <a class="frame" href={github} aria-label="pwnspirit on github">
+          <img src="https://github.com/pwnspirit.png" alt="pwnspirit" width="120" height="120" loading="lazy" />
+        </a>
+      </figure>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="section-head"><h2>ctf</h2><a href={ctf}>visit →</a></div>
+    <ul class="rows">
+      <li>
+        <a class="row" href={ctf}>
+          <span class="r-title">ctf.myweb</span>
+          <span class="r-desc">Contains basics ctf writeups.</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+</Base>

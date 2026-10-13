@@ -1,0 +1,16 @@
+---
+import Base from "../../layouts/Base.astro";
+import { links } from "../../data/site";
+---
+<Base title="contact" description="get in touch with pwnspirit.">
+  <header class="intro">
+    <h1>say hi</h1>
+    <p>
+    </p>
+  </header>
+  <ul class="contact-links">
+    {links.map((l) => (
+      <li><span class="k">{l.k}</span><a href={l.href}>{l.v}</a></li>
+    ))}
+  </ul>
+</Base>
