@@ -1,0 +1,10 @@
+{
+  // Cloudflare Workers config for a static Astro site.
+  // The site is fully static, so there's no Worker script — Workers
+  // just serves the built files in ./dist as static assets.
+  "name": "website",
+  "compatibility_date": "2026-10-13",
+  "assets": {
+    "directory": "./dist"
+  }
+}

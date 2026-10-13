@@ -1,5 +1,5 @@
 {
-  "name": "pwnspiriit-site",
+  "name": "pwnspirit-site",
   "type": "module",
   "version": "1.0.0",
   "private": true,
@@ -11,5 +11,8 @@
   },
   "dependencies": {
     "astro": "^5.5.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.149.0"
   }
 }

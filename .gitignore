@@ -12,3 +12,6 @@ node_modules/
 
 # local notes, not published
 README.md
+
+# wrangler local state
+.wrangler/
