@@ -1,0 +1,28 @@
+---
+import Base from "../../layouts/Base.astro";
+import { getCollection } from "astro:content";
+const notes = (await getCollection("notes", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+const fmt = (d) => d.toLocaleDateString("en", { month: "short", year: "numeric", timeZone: "UTC" });
+---
+<Base title="notes" description="notes on events and other things by pwnspirit.">
+  <header class="intro"><h1>notes</h1><p>write-ups about events, meetups and anything else that isn't a full blog post.</p></header>
+  <section class="section" style="margin-top:34px">
+    <div class="section-head"><h2>all notes</h2></div>
+    {notes.length === 0 ? (
+      <p style="color:var(--f-low)"><em>nothing here yet. drop Markdown in <code>src/content/notes/</code>.</em></p>
+    ) : (
+      <ul class="rows">
+        {notes.map((n) => (
+          <li>
+            <a class="row" href={`/notes/${n.id}/`}>
+              <span class="r-title">{n.data.title}</span>
+              <span class="r-meta">{fmt(n.data.date)}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+  </section>
+</Base>

@@ -4,10 +4,10 @@ import { getCollection } from "astro:content";
 const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
-const fmt = (d) => d.toLocaleDateString("en", { month: "short", year: "numeric" });
+const fmt = (d) => d.toLocaleDateString("en", { month: "short", year: "numeric", timeZone: "UTC" });
 ---
-<Base title="writing" description="notes and writeups by pwnspirit.">
-  <header class="intro"><h1>writing</h1><p>notes, half-formed thoughts, and the occasional bug i'm proud of.</p></header>
+<Base title="blog" description="bug bounty, CTFs and other things by pwnspirit.">
+  <header class="intro"><h1>blog</h1><p>bug bounty, CTFs and anything else I feel like writing about.</p></header>
   <section class="section" style="margin-top:34px">
     <div class="section-head"><h2>all posts</h2></div>
     {posts.length === 0 ? (

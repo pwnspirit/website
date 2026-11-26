@@ -1,8 +1,8 @@
 ---
 import Base from "./Base.astro";
-const { title, description, date, kind, severity } = Astro.props;
+const { title, description, date, kind, severity, section = "blog" } = Astro.props;
 const dt = new Date(date);
-const human = dt.toLocaleDateString("en", { year: "numeric", month: "long", day: "numeric" });
+const human = dt.toLocaleDateString("en", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" });
 ---
 <Base title={title} description={description}>
   <article class="prose">
@@ -15,6 +15,6 @@ const human = dt.toLocaleDateString("en", { year: "numeric", month: "long", day:
       </div>
     </div>
     <div class="content"><slot /></div>
-    <a class="back-link" href="/blog">← all writing</a>
+    <a class="back-link" href={`/${section}`}>← all {section === "notes" ? "notes" : "blog posts"}</a>
   </article>
 </Base>

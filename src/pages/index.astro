@@ -1,37 +1,105 @@
 ---
 import Base from "../layouts/Base.astro";
-const github = "https://github.com/pwnspirit";
-const ctf = "https://ctf.roshan-tiwari.com.np";
+const Notes = "https://ctf.roshan-tiwari.com.np";
+import { getCollection } from "astro:content";
+const byDate = (a, b) => b.data.date.valueOf() - a.data.date.valueOf();
+const posts = (await getCollection("blog", ({ data }) => !data.draft))
+    .sort(byDate)
+    .slice(0, 3);
+const notes = (await getCollection("notes", ({ data }) => !data.draft))
+    .sort(byDate)
+    .slice(0, 2);
+const fmt = (d) =>
+    d.toLocaleDateString("en", { month: "short", year: "numeric", timeZone: "UTC" });
 ---
+
 <Base>
-  <header class="intro">
-    <div class="intro-row">
-      <div class="intro-text">
-        <h1>hii, i'm <span class="name">pwnspirit</span></h1>
-        <p class="tagline">i'm an 18 year old guy from Nepal who loves computers and software.</p>
-        <p>
-          i spend most of my time breaking things to understand how they work, then
-          writing down what i find.
-        </p>
-      </div>
+    <header class="intro">
+        <div class="intro-row">
+            <div class="intro-text">
+                <h1>
+                    Hi, I'm <span class="name">pwnspirit</span>
+                </h1>
+                <p>
+                    I build systems, I break systems, I build systems that build
+                    systems, and I build systems that break systems.
+                </p>
+            </div>
 
-      <figure class="figure">
-        <a class="frame" href={github} aria-label="pwnspirit on github">
-          <img src="https://github.com/pwnspirit.png" alt="pwnspirit" width="120" height="120" loading="lazy" />
-        </a>
-      </figure>
-    </div>
-  </header>
+            <figure class="figure">
+                <div class="frame">
+                    <img
+                        src="/profile.jpg"
+                        alt="pwnspirit"
+                        width="120"
+                        height="120"
+                        loading="lazy"
+                    />
+                </div>
+            </figure>
+        </div>
+    </header>
 
-  <section class="section">
-    <div class="section-head"><h2>ctf</h2><a href={ctf}>visit →</a></div>
-    <ul class="rows">
-      <li>
-        <a class="row" href={ctf}>
-          <span class="r-title">ctf.myweb</span>
-          <span class="r-desc">Contains basics ctf writeups.</span>
-        </a>
-      </li>
-    </ul>
-  </section>
+    <section class="section">
+        <div class="section-head">
+            <h2>Recent blog posts</h2>
+            <a href="/blog">all posts →</a>
+        </div>
+        {posts.length === 0 ? (
+            <p style="color:var(--f-low)">
+                <em>nothing here yet.</em>
+            </p>
+        ) : (
+            <ul class="rows">
+                {posts.map((p) => (
+                    <li>
+                        <a class="row" href={`/blog/${p.id}/`}>
+                            <span class="r-title">{p.data.title}</span>
+                            <span class="r-meta">{fmt(p.data.date)}</span>
+                        </a>
+                    </li>
+                ))}
+            </ul>
+        )}
+    </section>
+
+    <section class="section">
+        <div class="section-head">
+            <h2>Recent notes</h2>
+            <a href="/notes">all notes →</a>
+        </div>
+        {notes.length === 0 ? (
+            <p style="color:var(--f-low)">
+                <em>nothing here yet.</em>
+            </p>
+        ) : (
+            <ul class="rows">
+                {notes.map((n) => (
+                    <li>
+                        <a class="row" href={`/notes/${n.id}/`}>
+                            <span class="r-title">{n.data.title}</span>
+                            <span class="r-meta">{fmt(n.data.date)}</span>
+                        </a>
+                    </li>
+                ))}
+            </ul>
+        )}
+    </section>
+
+    <section class="section">
+        <div class="section-head">
+            <h2>Personal Notes</h2>
+            <a href={Notes}>visit →</a>
+        </div>
+        <ul class="rows">
+            <li>
+                <a class="row" href={Notes}>
+                    <span class="r-title">Writeups</span>
+                    <span class="r-desc">
+                        Personal general writeups mostly related to hackthebox.
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </section>
 </Base>

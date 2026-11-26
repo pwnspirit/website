@@ -10,5 +10,3 @@ hey, this is just a placeholder so the blog isn't empty.
 
 real writeups and notes are coming once i've got something worth sharing. check
 back in a bit.
-
-Test again
