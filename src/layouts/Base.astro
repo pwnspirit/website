@@ -5,7 +5,8 @@ const {
     description = "pwnspirit — a 20 year old from Nepal who loves computers and software.",
 } = Astro.props;
 const path = Astro.url.pathname;
-const active = (p) => (p === "/" ? path === "/" : path.startsWith(p));
+const active = (p) =>
+    p === "/" ? path === "/" : path === p || path.startsWith(`${p}/`);
 const nav = [
     { href: "/blog", label: "blog" },
     { href: "/notes", label: "notes" },
