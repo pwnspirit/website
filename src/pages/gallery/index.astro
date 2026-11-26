@@ -1,0 +1,33 @@
+---
+import Base from "../../layouts/Base.astro";
+import { photos } from "../../data/gallery";
+
+// group photos by album, keeping the order they're listed in
+const albums = [...new Set(photos.map((p) => p.album))].map((name) => ({
+  name,
+  items: photos.filter((p) => p.album === name),
+}));
+---
+<Base title="gallery" description="photos from events and other things by pwnspirit.">
+  <header class="intro"><h1>gallery</h1><p>photos from events, CTFs and other things I've been to.</p></header>
+
+  {albums.length === 0 ? (
+    <p style="color:var(--f-low);margin-top:34px"><em>nothing here yet. add photos in <code>src/data/gallery.ts</code>.</em></p>
+  ) : (
+    albums.map((a) => (
+      <section class="section" style="margin-top:34px">
+        <div class="section-head"><h2>{a.name}</h2><span class="r-meta">{a.items.length} {a.items.length === 1 ? "photo" : "photos"}</span></div>
+        <div class="photo-grid">
+          {a.items.map((p) => (
+            <figure>
+              <a href={p.src} target="_blank" rel="noopener">
+                <img src={p.src} alt={p.alt} loading="lazy" />
+              </a>
+              {p.caption && <figcaption>{p.caption}</figcaption>}
+            </figure>
+          ))}
+        </div>
+      </section>
+    ))
+  )}
+</Base>
