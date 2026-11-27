@@ -17,7 +17,7 @@ I had been doing a lot of CVE challenges on [CVEPlayground](https://cveplaygroun
 
 ## The talks and villages
 
-The conference had a wide mix of talks. The parts that interested me most were the Rookie Stage and the hardware hacking village. I couldn't catch every talk, because I spent a good part of the day playing the CTF with my friends [Iconic](https://bijayakumal.com.np) and Kamisama.
+The conference had a wide mix of talks. The parts that interested me most were the Rookie Stage and the hardware hacking village. I couldn't catch every talk, because I spent a good part of the day playing the CTF with my friends [Iconic](https://bijayakumal.com.np) and [Kamisama](https://grishmaa.com.np/).
 
 I did get some time at the hardware hacking village, and it was a lot of fun to try something outside my usual web stuff.
 
