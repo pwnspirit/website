@@ -4,7 +4,7 @@
   --f-high:#4c4f69; --f-low:#6c6f85; --accent:#8839ef;
   --font-serif:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
   --font-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
-  --maxw:640px;
+  --maxw:820px;
 }
 :root[data-theme="dark"]{ /* catppuccin mocha */
   --b-low:#1e1e2e; --b-med:#181825; --b-high:#313244;

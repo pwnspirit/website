@@ -6,26 +6,21 @@ export interface Link { k: string; v: string; href: string; }
 export interface Award { title: string; meta: string; href: string; }
 
 export const projects: Project[] = [
-  { name: "recon-ritual", desc: "my recon setup glued into one script so i stop forgetting steps at 2am.", tags: ["python", "bash"], href: "#" },
-  { name: "idorbot", desc: "a burp extension that swaps object IDs around and yells when something answers that shouldn't.", tags: ["java", "burp"], href: "#" },
-  { name: "bundle-digger", desc: "greps minified JS for keys, routes and endpoints so i don't have to squint.", tags: ["go"], href: "#" },
+  { name: "MetisLinux", desc: "I was a maintainer at MetisLinux", tags: ["c", "bash","python"], href: "https://github.com/metis-os" },
+  { name: "earlymoon", desc: "Simple DNS query tool written in go", tags: ["Go"], href: "https://github.com/pwnspirit/earlymoon" },
 ];
 
 export const talks: Talk[] = [
-  { meta: "2026 · meetup", title: '"reading code like an attacker"', tail: "a talk at a local meetup about the paranoid mindset.", href: "#" },
-  { meta: "2025 · guest post", title: "how i think about access control", tail: "wrote this for a friend's blog.", href: "#" },
-  { meta: "2025 · lightning talk", title: "five minutes, one IDOR", tail: "a quick one at a security night.", href: "#" },
-];
+  ];
 
 export const awards: Award[] = [
-  { title: "hall of fame — a company you've heard of", meta: "2026", href: "#" },
-  { title: "1st place, some local CTF", meta: "2025", href: "#" },
-  { title: "letter of appreciation, responsible disclosure", meta: "2025", href: "#" },
+  { title: "hall of fame — at Cambridge University", meta: "2026", href: "https://www.cambridge.org/legal/security-and-vulnerability-disclosure-policy/acknowledgement" },
+  { title: "3rd place, HackAstra CTF", meta: "2026", href: "https://lnkd.in/p/gwipGNMp" },
+  { title: "3rd runner-up, BSides Kathmandu 2026", meta: "2026", href: "/notes/bsidesktm/" },
 ];
 
 export const links: Link[] = [
-  { k: "x / twitter", v: "@pwnspirit", href: "#" },
+  { k: "x / twitter", v: "@pwnspirit", href: "https://twitter.com/pwnspirit" },
   { k: "github", v: "github.com/pwnspirit", href: "https://github.com/pwnspirit" },
-  { k: "mastodon", v: "@pwnspirit", href: "#" },
-  { k: "email", v: "hi@roshan-tiwari.com.np", href: "mailto:hi@roshan-tiwari.com.np" },
+  { k: "discord", v: "@pwnspirit", href: "https://discord.com/users/936853051984199750" },
 ];

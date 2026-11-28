@@ -1,49 +1,79 @@
 ---
 import Base from "../../layouts/Base.astro";
 import { projects, talks, awards } from "../../data/site";
+
+// Fetch GitHub star counts at build time. Failures just hide the count.
+async function stars(href: string): Promise<number | null> {
+  const m = href.match(/^https?:\/\/github\.com\/([^/]+)\/([^/#?]+)/);
+  if (!m) return null;
+  try {
+    const headers: Record<string, string> = { "User-Agent": "astro-site" };
+    if (import.meta.env.GITHUB_TOKEN) headers.Authorization = `Bearer ${import.meta.env.GITHUB_TOKEN}`;
+    const res = await fetch(`https://api.github.com/repos/${m[1]}/${m[2]}`, { headers });
+    if (!res.ok) return null;
+    return (await res.json()).stargazers_count ?? null;
+  } catch {
+    return null;
+  }
+}
+const withStars = await Promise.all(projects.map(async (pr) => ({ ...pr, stars: await stars(pr.href) })));
 ---
+
 <Base title="projects" description="tools and recognition — pwnspirit.">
-  <header class="intro"><h1>projects</h1><p>things i built because i got tired of doing them by hand. nothing fancy, they just save me time.</p></header>
+    <header class="intro">
+        <h1>projects</h1>
+        <p>
+            things i built because i got tired of doing them by hand. nothing
+            fancy, they just save me time.
+        </p>
+    </header>
 
-  <section class="section" style="margin-top:34px">
-    <div class="section-head"><h2>tools</h2></div>
-    <ul class="rows">
-      {projects.map((pr) => (
-        <li>
-          <a class="row" href={pr.href}>
-            <span class="r-title">{pr.name}</span>
-            <span class="r-desc">{pr.desc}</span>
-          </a>
-        </li>
-      ))}
-    </ul>
-  </section>
+    <section class="section" style="margin-top:34px">
+        <div class="section-head">
+            <h2>tools</h2>
+        </div>
+        <ul class="rows">
+            {withStars.map((pr) => (
+                <li>
+                    <a class="row" href={pr.href}>
+                        <span class="r-title">{pr.name}</span>
+                        <span class="r-desc">{pr.desc}</span>
+                        {pr.stars !== null && <span class="r-meta">★ {pr.stars}</span>}
+                    </a>
+                </li>
+            ))}
+        </ul>
+    </section>
 
-  <section class="section">
-    <div class="section-head"><h2>talks &amp; writing</h2></div>
-    <ul class="rows">
-      {talks.map((t) => (
-        <li>
-          <a class="row" href={t.href}>
-            <span class="r-title">{t.title}</span>
-            <span class="r-meta">{t.meta}</span>
-          </a>
-        </li>
-      ))}
-    </ul>
-  </section>
+    <section class="section">
+        <div class="section-head">
+            <h2>talks &amp; writing</h2>
+        </div>
+        <ul class="rows">
+            {talks.map((t) => (
+                <li>
+                    <a class="row" href={t.href}>
+                        <span class="r-title">{t.title}</span>
+                        <span class="r-meta">{t.meta}</span>
+                    </a>
+                </li>
+            ))}
+        </ul>
+    </section>
 
-  <section class="section" id="recognition">
-    <div class="section-head"><h2>recognition</h2></div>
-    <ul class="rows">
-      {awards.map((a) => (
-        <li>
-          <a class="row" href={a.href}>
-            <span class="r-title">{a.title}</span>
-            <span class="r-meta">{a.meta}</span>
-          </a>
-        </li>
-      ))}
-    </ul>
-  </section>
+    <section class="section" id="recognition">
+        <div class="section-head">
+            <h2>recognition</h2>
+        </div>
+        <ul class="rows">
+            {awards.map((a) => (
+                <li>
+                    <a class="row" href={a.href}>
+                        <span class="r-title">{a.title}</span>
+                        <span class="r-meta">{a.meta}</span>
+                    </a>
+                </li>
+            ))}
+        </ul>
+    </section>
 </Base>

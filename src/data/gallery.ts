@@ -5,6 +5,12 @@ export interface Photo { src: string; alt: string; caption?: string; album: stri
 
 export const photos: Photo[] = [
   {
+    album: "Hall of fame",
+    src: "/HOF/cambridge-hof-2026.png",
+    alt: "Hall of fame at Cambridge screenshot",
+    caption: "Hall of fame at Cambridge University.",
+  },
+  {
     album: "BSides Kathmandu 2026",
     src: "/bsidektm/bsides_post_01.webp",
     alt: "The crowd, the registration desk and the speakers at BSides Kathmandu 2026",
@@ -21,5 +27,8 @@ export const photos: Photo[] = [
     src: "/bsidektm/bsides_post_05.webp",
     alt: "The CTF scoreboard showing every team's score over time",
     caption: "The CTF scoreboard.",
+
   },
+
+
 ];
